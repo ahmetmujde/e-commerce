@@ -1,0 +1,463 @@
+
+body {
+  margin-bottom: 180px;
+
+}
+
+.bg-orange{
+  background-color: #ec6e00 !important;
+  color:white!important;
+}
+
+.bg-green{
+  background-color: #39B54A!important;
+  color:white!important;
+}
+
+
+.btn .bx {
+    vertical-align: inherit !important;
+    margin-top: -3px !important;
+    font-size: 1.15rem !important;
+}
+  
+  .form-control {
+    height: calc(2.5rem + 2px);
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+  }
+  
+  .btn-search {
+    font-size: 1rem;
+    padding: 0.5rem 0.75rem!important;
+    font-size: 1rem!important;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+  }
+  
+.btn{
+  font-size: 1rem;
+  padding: 0.3rem 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+}
+
+  .bx.icon-single {
+    font-size: 1.5rem;
+  }
+  
+  .form-inline .form-control {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .basket{
+    margin-bottom: 0.8rem!important;
+  }
+  .form-inline .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  
+  /* Small devices (landscape phones, 576px and up) */
+  @media (min-width: 576px) {
+  }
+  
+  /* Medium devices (tablets, 768px and up) */
+  @media (min-width: 768px) {
+    .form-inline .form-control {
+      width: 210px;
+    }
+  }
+  
+  /* Large devices (desktops, 992px and up) */
+  @media (min-width: 992px) {
+    .form-inline .form-control {
+      width: 440px;
+    }
+  }
+  
+  /* Extra large devices (large desktops, 1200px and up) */
+  @media (min-width: 1200px) {
+    .form-inline .form-control {
+      width: 600px;
+    }
+  }
+  
+  .sub-menu.navbar-light .navbar-nav .active > .nav-link,
+  .sub-menu.navbar-light .navbar-nav .nav-link.active,
+  .sub-menu.navbar-light .navbar-nav .nav-link.show,
+  .sub-menu.navbar-light .navbar-nav .show > .nav-link {
+    border-bottom: 3px solid #007bff;
+    color: #007bff;
+  }
+  
+  .navbar .navbar-toggler {
+    border: none;
+  }
+  
+  .navbar-light .navbar-toggler:focus {
+    outline: none;
+  }
+  
+  .navbar {
+    padding-top: 1rem;
+  }
+  
+  .main-menu {
+    position: relative;
+    z-index: 3;
+  }
+  
+  .sub-menu {
+    position: relative;
+    z-index: 2;
+    padding: 0 1rem;
+  }
+  
+  /* Medium devices (tablets, 768px and up) */
+  @media (min-width: 768px) {
+    .sub-menu {
+      padding: 0 1rem;
+    }
+  
+    .sub-menu.navbar-expand-md .navbar-nav .nav-link {
+      padding: 0.2rem 1.5rem;
+    }
+  }
+  
+  .navbar.bg-light {
+    background: #fff !important;
+    box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.1);
+  }
+  .card{
+  
+    box-shadow: 1px 1px 5px rgb(224, 224, 224);
+ 
+  }
+  .product-piece{
+    width: 4rem;
+    padding:0;
+    
+  }
+  .card-title{
+    text-align: center;
+    font-size: 1.4em;
+    color:#58a742;
+  }
+  .card-body{
+    padding:0.7rem 0.7rem 0.2rem 0.7rem;
+    text-align: center;
+    
+  }
+  .left-side{
+    padding: 0!important;
+  }
+  .card-title span{
+    text-align: left;
+    font-size: 0.9rem;
+    color:#58a742;
+  
+  }
+.basket-button{
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  
+}
+  .card-text{
+    font-size: 0.9rem;
+    text-align: center;
+  }
+  .card-h{
+    font-weight: bold;
+    text-align: center;
+    
+  }
+
+  .user-dropdown .nav-link {
+    padding: 0.15rem 0;
+  }
+
+  #sidebar {
+    background: #fff;
+    height: 100%;
+    left: -100%;
+    top: 0;
+    bottom: 0;
+    overflow: auto;
+    position: fixed;
+    transition: 0.4s ease-in-out;
+    width: 84%;
+    z-index: 5001;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+    padding: 1.25rem 1rem 1rem;
+  }
+  
+  #sidebar.active {
+    left: 0;
+  }
+  
+  #sidebar .sidebar-header {
+    background: #fff;
+    border-bottom: 1px solid #e4e4e4;
+    padding-bottom: 1.5rem;
+  }
+  
+  #sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #e4e4e4;
+    margin-bottom: 40px;
+  }
+  
+  #sidebar ul p {
+    color: #fff;
+    padding: 10px;
+  }
+  
+  #sidebar ul li a {
+    padding: 10px 16px;
+    font-size: 1.1em;
+    display: block;
+    color: #000;
+  }
+  
+  #sidebar ul li a:hover {
+    color: #7386d5;
+    background: #fff;
+  }
+  
+  #sidebar ul li.active > a,
+  #sidebar a[aria-expanded="true"] {
+    color: #007bff;
+    background: #e6f2ff;
+    border-radius: 6px;
+  }
+  
+  a[data-toggle="collapse"] {
+    position: relative;
+  }
+  
+  #sidebar .links .dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+  }
+  
+  section {
+    padding: 6rem;
+    background: #e4e4e4;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .overlay {
+    background: rgba(0, 0, 0, 0.7);
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    z-index: -1;
+    width: 100%;
+    opacity: 0;
+  }
+  
+  .overlay.visible {
+    opacity: 1;
+    z-index: 5000;
+  }
+  
+  /* .mobiHeader .menuActive~.overlay {
+      opacity: 1;
+      width: 100%;
+  } */
+  
+  ul.social-icons {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+  
+  ul.social-icons li {
+    display: inline-block;
+    margin-right: 0px;
+    margin-bottom: 0;
+  }
+  
+  #sidebar ul.social-icons li a {
+    font-size: 24px;
+  }
+  
+  .utility-nav {
+    background: #e4e4e4;
+    padding: 0.5rem 1rem;
+  }
+  
+  .utility-nav p {
+    margin-bottom: 0;
+  }
+  
+  .search-bar {
+    position: relative;
+    z-index: 2;
+    box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.1);
+  }
+  
+  .search-bar .form-control {
+    width: calc(100% - 45px);
+  }
+  
+  .avatar {
+    border-radius: 50%;
+    width: 4.5rem;
+    height: 4.5rem;
+    margin-right: 8px;
+  }
+  
+  .avatar.avatar-xs {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+  
+  .user-dropdown .dropdown-menu {
+    left: auto;
+    right: 0;
+  }
+  .carousel-inner{
+    margin: 30px 0 30px 0 ;
+    max-height: 400px !important;
+  }
+  .carousel-caption{   height: 500px !important;
+  
+}
+.carousel-caption h1{
+  color:white!important;
+text-shadow: 1px 1px  5px rgb(126, 126, 126)!important;
+}
+.carousel-caption p{
+font-size: 1.5em;
+color:white!important;
+text-shadow: 1px 1px  5px  rgb(126, 126, 126)!important;
+}
+
+.card-columns{
+  column-count: 3;
+  
+}
+
+.footer {
+  background-color:#F6F6F6 !important;
+  box-shadow: 1px -2px 15px 0px rgba(0, 0, 0, 0.1);
+  
+  
+}
+
+.footer .links ul {
+  list-style-type: none;
+}
+
+.footer .links li a {
+
+  transition: color .2s;
+}
+
+.footer .links li a:hover {
+  text-decoration: none;
+  color:skyblue ;
+
+}
+
+.footer .about-company i {
+  font-size: 25px;
+}
+
+.footer .about-company a {
+  transition: color .2s;
+}
+
+.footer .about-company a:hover {
+  color: skyblue;
+
+}
+
+.footer .location i {
+  font-size: 18px;
+}
+
+
+article{
+  box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.2);
+ padding-bottom:15px;
+}
+
+.ortala {
+    display: flex !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    margin-left: 50em !important;
+}
+
+.u1{
+position: relative !important;
+background: #fff !important;
+display: flex !important;
+padding: 10px 20px !important;
+border-radius: 50px !important;
+box-shadow: 0 5px 15px rgba(0,0,0,.2) !important;
+}
+
+    .u1 .l1 {
+        list-style: none !important;
+        line-height: 25px !important;
+        margin: 0 5px !important;
+    }
+
+        .u1 .l1.sayfano {
+            width: 25px !important;
+            height: 25px !important;
+            line-height: 25px !important;
+            text-align: center !important;
+        }
+
+        .u1 .l1 a {
+            display: block !important;
+            text-decoration: none !important;
+            color: #777 !important;
+            font-weight: 600 !important;
+            border-radius: 50% !important;
+        }
+
+        .u1 .l1.sayfano:hover a,
+        .u1 .l1.sayfano.active a {
+            background: #4752FF !important;
+            color: #fff !important;
+        }
+
+    .u1 l1:first-child {
+        margin-right: 30px !important;
+        font-weight: 700 !important;
+        font-size: 20px !important;
+    }
+
+.u1 l1:last-child {
+    margin-left: 100px !important;
+    font-weight: 700 !important;
+    font-size: 20px !important;
+}
+
+.card-ba{
+    height:125px;
+}
+
+.hizala {
+    position: absolute;
+    right: 0;
+    top: 30px;
+}
