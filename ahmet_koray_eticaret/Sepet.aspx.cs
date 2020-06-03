@@ -17,7 +17,10 @@ namespace ahmet_koray_eticaret
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            { 
+            {
+                ddladresil.AutoPostBack = true;
+                ddladresilce.AutoPostBack = true;
+
                 //sepet ürün id 
                 string sepetekle = Request.QueryString["sepetekle"];
 
@@ -55,24 +58,7 @@ namespace ahmet_koray_eticaret
                     conn.Dispose();
                     conn.Close();
                 }
-                rbtaksit.Visible = false;
             }
-
-            cbpesin.AutoPostBack = true;
-            cbtaksit.AutoPostBack = true;
-
-            if (cbtaksit.Checked == false)
-            {
-                cbpesin.Checked = true;
-                rbtaksit.Visible = false;
-            }
-
-            else if(cbtaksit.Checked==true)
-            {
-                cbpesin.Checked = false;
-                rbtaksit.Visible = true;
-            }
-
             sepetlistele();
 
             islemler();
@@ -108,7 +94,7 @@ namespace ahmet_koray_eticaret
                 PagedDataSource pds = new PagedDataSource();
                 pds.DataSource = dt.DefaultView;
                 pds.AllowPaging = true;
-                pds.PageSize = 3;
+                pds.PageSize = 6;
                 int currentPage;
 
                 if (Request.QueryString["page"] != null)
@@ -172,6 +158,13 @@ namespace ahmet_koray_eticaret
 
                     Response.Cookies["sepetsayi"].Expires = DateTime.Now.AddDays(1);
                 }
+
+                //toplam fiyatı gösterme
+
+                SqlCommand toplamfiyat = new SqlCommand("select  sum(urunler.urun_fiyat*urun_adedi) as adet_fiyati from sepet inner join urunler on sepet_urun = urunler.id where satin_alan_uye =(select id  from uyeler where  email='" + Session["user"].ToString() + "' )", conn);
+
+                lbltoplamfiyat.Text = toplamfiyat.ExecuteScalar().ToString();
+
                 conn.Dispose();
                 conn.Close();
 
@@ -253,6 +246,7 @@ namespace ahmet_koray_eticaret
 
         protected void btnsiparis_Click(object sender, EventArgs e)
         {
+            
             SqlConnection conn = new SqlConnection();
 
             conn.ConnectionString = "Data Source=DESKTOP-OR597H6; Initial Catalog=eticaret; Integrated Security=true";
@@ -269,17 +263,27 @@ namespace ahmet_koray_eticaret
             else if (sipariskod.ExecuteScalar().ToString() == "1")
             {
 
-
                 //işlem : siparis kayıt ekleme ve sepetteki eşyaları silme 
 
                 //siparisler tablosuna kayıt 
-                SqlCommand siparisiekle = new SqlCommand("", conn);
 
-                siparisiekle.ExecuteNonQuery();
+                int urunsys = 0;
 
+                SqlCommand urunsayisi = new SqlCommand("select count(sepet_urun) from sepet where satin_alan_uye=(select id from uyeler where email='" + Session["user"].ToString() + "')", conn);
+
+                urunsys = int.Parse(urunsayisi.ExecuteScalar().ToString());
+
+               
+
+                for (int i = 1; i <= urunsys; i++)
+                {
+                    SqlCommand siparisiekle = new SqlCommand("insert into siparisler (siparis_durumu,siparis_urun,satin_alan_uye,kargo_firmasi,gonderilen_il,gonderilen_ilce,satis_tarihi,toplam_fiyat,urun_adedi) values (0,(Select sepet_urun from (Select ROW_NUMBER() OVER ( order by sepet_urun) as 'Row_Number', sepet_urun from sepet  where satin_alan_uye=(select id from uyeler where email='" + Session["user"].ToString() + "')) as tbl Where tbl.Row_Number = " + i + "),(select id from uyeler where email='" + Session["user"].ToString() + "'),1,(select il from uyeadres where uye_id=(select id from uyeler where email='" + Session["user"].ToString() + "')),(select ilce from uyeadres where uye_id=(select id from uyeler where email='" + Session["user"].ToString() + "')),'" + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") + "',(select urunler.urun_fiyat*urun_adedi as adet_fiyati from sepet inner join urunler on sepet_urun = urunler.id where satin_alan_uye = (select id from uyeler where email ='" + Session["user"].ToString() + "') and sepet.sepet_urun=(Select sepet_urun from (Select ROW_NUMBER() OVER ( order by sepet_urun) as 'Row_Number', sepet_urun from sepet  where satin_alan_uye=(select id from uyeler where email='" + Session["user"].ToString() + "')) as tbl Where tbl.Row_Number = " + i + ")),(select urun_adedi from sepet  where satin_alan_uye=(select id from uyeler where email='" + Session["user"].ToString() + "') and sepet_urun=(Select sepet_urun from (Select ROW_NUMBER() OVER ( order by sepet_urun) as 'Row_Number', sepet_urun from sepet  where satin_alan_uye=(select id from uyeler where email='" + Session["user"].ToString() + "')) as tbl Where tbl.Row_Number = " + i + ")))", conn);
+
+                    siparisiekle.ExecuteNonQuery();
+                }
 
                 //sepetteki ürünlerin silme 
-                SqlCommand sepetsil = new SqlCommand("", conn);
+                SqlCommand sepetsil = new SqlCommand("delete from sepet where satin_alan_uye=(select id from uyeler where email='" + Session["user"].ToString() + "')", conn);
 
                 sepetsil.ExecuteNonQuery();
 
@@ -290,35 +294,21 @@ namespace ahmet_koray_eticaret
         }
 
 
-        protected void btnfarkliadres_Click(object sender, EventArgs e)
+        protected void btnadres_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection();
+            
+        }
 
-            conn.ConnectionString = "Data Source=DESKTOP-OR597H6; Initial Catalog=eticaret; Integrated Security=true";
-
-            conn.Open();
-
-            SqlCommand sipariskod = new SqlCommand("select count(*) from uyeadres where uye_id=(select id from uyeler where email='" + Session["user"].ToString() + "')", conn);
-
-
-            if (sipariskod.ExecuteScalar().ToString() == "0")
-                ClientScript.RegisterStartupScript(Page.GetType(), "alert", "alert('Adres bilgileriniz eksik! Yönlendiriliyorsunuz...');window.location='Uyeprofil.aspx?panelno=0';", true);
-
-
-            else if (sipariskod.ExecuteScalar().ToString() == "1")
+        protected void btnadresonay_Click(object sender, EventArgs e)
+        {
+            if (tafarkliadres.Value != null)
             {
 
+            }
 
-                //burada kaldık işlem : siparis kayat ekleme ve sepetteki eşyaları silme 
-
-                //siparisler tablosuna kayıt 
-
-                SqlCommand sqlkod = new SqlCommand("", conn);
-
-                sqlkod.ExecuteNonQuery();
-
-                ClientScript.RegisterStartupScript(Page.GetType(), "alert", "alert('Siparişiniz Eksiksiz Biçimde Alındı ');window.location='Anasayfa.aspx';", true);
-
+            else
+            {
+                Response.Write("<script>alert('Adres Boş geçilemez')</script>");
             }
         }
 

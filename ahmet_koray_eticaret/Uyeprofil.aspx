@@ -14,11 +14,11 @@
 
 else { %>
         
-  <div class="container">
+  <div class="container-fluid">
     <div class=" row justify-content-around">
       <div class="card-group">
       </div>
-      <div class=" col-md-3 left-side">
+      <div class=" col-md-2 left-side">
 
         <article class="card-group-item mt-4">
           <header class="card-header">
@@ -51,14 +51,13 @@ else { %>
                         <div class="p-2"><a href="Uyeprofil.aspx?panelno=2">ŞİFRE DEĞİŞTİR</a></div>
                         <div class="p-2"><a href="Uyeprofil.aspx?panelno=3">ADRES DEĞİŞTİR</a></div>
                         <div class="p-2"><a href="Uyeprofil.aspx?panelno=4">SİPARİSLERİM</a></div>
-                        <div class="p-2"><a href="Uyeprofil.aspx?panelno=5">YORUMLARIM</a></div>
                 </div>
             </div>
           </div>
         </article>
         </div>
          
-        <div class="col-md-9 right">
+        <div class="col-md-10 right">
             
         <asp:Panel ID="pnluyeadres" runat="server">
            
@@ -195,6 +194,45 @@ else { %>
                             </div>
                        </div>
                     </asp:Panel>
+
+            <asp:Panel ID="pnlsiparis" runat="server">
+                <asp:Repeater ID="rptsiparis" runat="server">
+                    <HeaderTemplate>
+                        <table class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th scope="col">Siparis Durum</th>
+                              <th scope="col">Adı</th>
+                              <th scope="col">Sayısı</th>
+                              <th scope="col">İl</th>
+                              <th scope="col">İlçe</th>
+                              <th scope="col">Toplam Fiyat</th>
+                              <th scope="col">Kargo Adı</th>
+                              <th scope="col">Siparis Tarihi</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                    </HeaderTemplate>
+                    <ItemTemplate>                
+                        <tr>                        
+                            <th scope="col"><%# Eval( "durum_adi") %></th>
+                            <th scope="col"><%# Eval( "urun_baslik") %></th>
+                            <th scope="col"><%# Eval( "urun_adedi") %></th>
+                            <th scope="col"><%# Eval( "il_adi") %></th>
+                            <th scope="col"><%# Eval( "ilce_adi") %></th>
+                            <th scope="col"><%# Eval( "toplam_fiyat") %></th>
+                            <th scope="col"><%# Eval( "kargo_adi") %></th>
+                            <th scope="col"><%# Eval( "tarih") %></th>
+                        </tr>
+                    </ItemTemplate>
+                    <FooterTemplate>
+                          </tbody>
+                        </table>    
+                    </FooterTemplate>
+                </asp:Repeater>
+            </asp:Panel>
+            
+        
             </div>
         </div>
     </div>

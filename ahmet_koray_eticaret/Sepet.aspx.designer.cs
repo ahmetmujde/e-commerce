@@ -85,31 +85,13 @@ namespace ahmet_koray_eticaret {
         protected global::System.Web.UI.WebControls.HyperLink linksonagit;
         
         /// <summary>
-        /// cbpesin control.
+        /// lbltoplamfiyat control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbpesin;
-        
-        /// <summary>
-        /// cbtaksit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbtaksit;
-        
-        /// <summary>
-        /// rbtaksit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rbtaksit;
+        protected global::System.Web.UI.WebControls.Label lbltoplamfiyat;
         
         /// <summary>
         /// btnadres control.
@@ -128,5 +110,59 @@ namespace ahmet_koray_eticaret {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnsiparis;
+        
+        /// <summary>
+        /// tafarkliadres control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea tafarkliadres;
+        
+        /// <summary>
+        /// ddladresil control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddladresil;
+        
+        /// <summary>
+        /// sdsadresil control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource sdsadresil;
+        
+        /// <summary>
+        /// ddladresilce control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddladresilce;
+        
+        /// <summary>
+        /// sdsadresilce control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource sdsadresilce;
+        
+        /// <summary>
+        /// btnadresonay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnadresonay;
     }
 }

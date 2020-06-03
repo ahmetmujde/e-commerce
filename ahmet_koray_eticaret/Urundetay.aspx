@@ -323,53 +323,6 @@
     </div>
 </div>
 
-
-<div class="container comments comment-space" id="yorum">
-    <div class="row">
-
-        <div class="col-12">
-            <h2> Yorum Yap </h2>
-                <form>
-                    <div class="form-group">
-                  
-                        <textarea  class="form-control" placeholder="Ürün hakkındaki yorumunuzu belirtiniz.."name="" id="" cols="30" rows="3"></textarea>
-                        <button class="btn btn-primary btn-lg p-2 m-2 float-right">Yorumu Gönder</button>
-                        <small id="emailHelp" class="form-text text-muted">yorumlarda küfürlü ve ahlaksız konuşmayın</small>
-                        </div>
-                </form>
-        </div>
-    </div>
-</div>
-
-<div class="container comments comment-space" >
-    <div class="row">
-
-        <div class="col-12">
-            <h2> Yorumlar </h2>
-            <div class="card card-white post">
-                <div class="post-heading">
-                    <div class="float-left image">
-                        <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar"
-                            alt="user profile image">
-                    </div>
-                    <div class="float-left meta">
-                        <div class="title h5">
-                            <a href="#"><b>Ahmet (RTE) Tayyip Müjde</b></a>
-
-                        </div>
-                        <h6 class="text-muted time">1 saat önce</h6>
-                    </div>
-                </div>
-                <div class="post-description">
-                    <p>böyle ürün mü olur amk hırsızlar</p>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 <div class="container comments">
     <div class="row">
 

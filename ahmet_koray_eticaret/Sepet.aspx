@@ -85,13 +85,12 @@ else
             <FooterTemplate>   
         </table>
         </FooterTemplate>
-    </asp:Repeater>
-        
-       
+    </asp:Repeater>       
     </div>
 </div>
 
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:eticaretConnectionString2 %>" SelectCommand="SELECT * FROM [sepet]"></asp:SqlDataSource>
+
 
 
 <asp:Panel ID="pnlsayfalama" runat="server">
@@ -110,28 +109,13 @@ else
 </div>
 
 
-<div class="container">
-    <div class=" row justify-content-around">
-
-       <span><h4>PEŞİN</h4>
-               <asp:CheckBox ID="cbpesin" runat="server" />
-       </span>
-
-        <span><h4>TAKSİT</h4>
-                <asp:CheckBox ID="cbtaksit" runat="server" />
-            <div class="d-flex flex-column">
-                 <asp:RadioButtonList ID="rbtaksit" runat="server">
-                    <asp:ListItem Value="6">6 AY</asp:ListItem>
-                    <asp:ListItem Value="12">12 AY</asp:ListItem>
-                    <asp:ListItem Value="24">24 AY</asp:ListItem>
-                </asp:RadioButtonList>
-
-            </div>
-        </span>
-
-
+<div class="d-flex justify-content-center">
+    <div class="alert alert-success w-50 p-3" role="alert">
+           <p class="text-center"> ÖDENECEK TOPLAM TUTAR:<asp:Label ID="lbltoplamfiyat" runat="server" Text=""></asp:Label></p>
     </div>
 </div>
+
+
 
 </asp:Panel>
 <script src="src/js/jquery-3.4.1.min.js"></script>    
@@ -157,17 +141,66 @@ else
 
 
 
-
+     
 
 <div class="container">
     <div class=" row justify-content-around">
-        <asp:LinkButton ID="btnadres" class="btn btn-primary" runat="server" Height="60px" OnClick="btnfarkliadres_Click" Width="240px"><i class="fas fa-gift fa-3x"></i>&nbsp;FARKLI ADRESE GÖNDER</asp:LinkButton>
+
+        <asp:LinkButton ID="btnadres" class="btn btn-primary" runat="server" Height="60px" OnClick="btnadres_Click" Width="240px" data-toggle="modal" data-target="#adres"><i class="fas fa-gift fa-3x"></i>&nbsp;FARKLI ADRESE GÖNDER</asp:LinkButton>        
+
         <asp:LinkButton ID="btnsiparis" class="btn btn-success" runat="server" Height="60px" OnClick="btnsiparis_Click" Width="240px"><i class="fas fa-thumbs-up fa-3x"></i>&nbsp;SİPARİSİ TAMAMLA</asp:LinkButton>
 
+         
     </div>
 </div>
 <%}%>
 
-    
+<div class="modal fade " id="adres" tabindex="-1" role="dialog" aria-labelledby="adres" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modal-title"><i class="far fa-map fa-3x"></i><i> Adres  Ekranı</i> </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>              
+             
+                <div class="modal-body">
+                    <div class="form-group ">
+                    <label for="email">Farklı Adresiniz</label>                     
+                        <textarea id="tafarkliadres" class="form-control" placeholder="Adresinizi giriniz..."  cols="30" rows="3" runat="server"></textarea>
+                    </div>                                          
+                </div>
+               
+                <div class="d-flex justify-content-around">
+                    <asp:DropDownList ID="ddladresil" runat="server" DataSourceID="sdsadresil" DataTextField="il_adi" DataValueField="id"></asp:DropDownList>
+                    <asp:SqlDataSource ID="sdsadresil" runat="server" ConnectionString='<%$ ConnectionStrings:eticaretConnectionString2 %>' SelectCommand="SELECT * FROM [iller]"></asp:SqlDataSource>
+                    <asp:DropDownList ID="ddladresilce" runat="server" DataSourceID="sdsadresilce" DataTextField="ilce_adi" DataValueField="id"></asp:DropDownList>
+                    <asp:SqlDataSource ID="sdsadresilce" runat="server" ConnectionString='<%$ ConnectionStrings:eticaretConnectionString2 %>' SelectCommand="SELECT * FROM [ilceler] WHERE ([il_kodu] = @il_kodu)">
+                        <SelectParameters>
+                            <asp:ControlParameter ControlID="ddladresil" PropertyName="SelectedValue" DefaultValue="1" Name="il_kodu" Type="Int32"></asp:ControlParameter>
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+
+                </div>
+
+              <br />
+
+                <div class="d-flex justify-content-center">
+                    <asp:LinkButton ID="btnadresonay" class="btn btn-success" runat="server" Height="60px" OnClick="btnadresonay_Click" Width="240px"><i class="fas fa-check fa-3x"></i>&nbsp;SİPARİSİ ONAYLA</asp:LinkButton>
+                </div>
+            
+            <br />
+          </div>
+     </div>
+</div>
+
+
+
+<script src="src/js/jquery-3.4.1.min.js"></script>
+<script src="src/js/popper.js"></script>
+<script src="src/js/bootstrap.min.js"></script>
+<script src="src/js/all.min.js"></script>
+
 
 </asp:Content>

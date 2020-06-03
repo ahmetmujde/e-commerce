@@ -22,15 +22,21 @@ namespace ahmet_koray_eticaret
         {
             if (!IsPostBack)
             {
-                pnlisim.Visible = false;
-                pnlsifre.Visible = false;
-                pnladres.Visible = false;
-                pnluyeadres.Visible = false;
-                ddlil.AutoPostBack = true;
-                ddlilce.AutoPostBack = true;
+                if (Session["user"] != null)
+                {
+                    pnlisim.Visible = false;
+                    pnlsifre.Visible = false;
+                    pnladres.Visible = false;
+                    pnlsiparis.Visible = false;
+                    pnluyeadres.Visible = false;
+                    ddlil.AutoPostBack = true;
+                    ddlilce.AutoPostBack = true;
 
-                panelsec();
-                uyeprofil();
+                    panelsec();
+                    uyeprofil();
+
+                }
+
             }
 
             
@@ -55,12 +61,41 @@ namespace ahmet_koray_eticaret
                         break;
                     case 3: pnladres.Visible = true;
                         break;
+                    case 4: pnlsiparis.Visible = true; siparisler();
+                        break;
 
                     default:
                         break;
                 }
             }
+            
         }
+
+        private void siparisler()
+        {
+            SqlConnection conn = new SqlConnection();
+
+            conn.ConnectionString = "Data Source=DESKTOP-OR597H6; Initial Catalog=eticaret; Integrated Security=true";
+
+            conn.Open();
+
+            SqlCommand siparis = new SqlCommand("select sd.durum_adi,urunler.urun_baslik,s.urun_adedi,i.il_adi,ilceler.ilce_adi,s.toplam_fiyat,k.kargo_adi,convert(varchar,s.satis_tarihi,106) as tarih from siparisler as s inner join siparisdurumu as sd on s.siparis_durumu=sd.id inner join urunler on urunler.id=s.siparis_urun inner join kargosirketleri k on k.id=s.kargo_firmasi inner join iller as i on i.id=s.gonderilen_il inner join ilceler on ilceler.id=s.gonderilen_ilce where satin_alan_uye=(select id from uyeler where email='" + Session["user"].ToString() + "')", conn);
+
+            SqlDataAdapter sda = new SqlDataAdapter(siparis);
+
+            DataTable dt = new DataTable();
+
+            sda.Fill(dt);
+
+            rptsiparis.DataSource = dt;
+            rptsiparis.DataBind();
+
+
+            conn.Dispose();
+            conn.Close();
+
+        }
+
 
         private void uyeprofil()
         {
@@ -175,11 +210,25 @@ namespace ahmet_koray_eticaret
             
             if (taAdres.Value != null && tbtel.Text != null)
             {
-                //uye adresi sayiya dönüstür 
 
-                SqlCommand sqlkod = new SqlCommand("update uyeadres set adres='" + taAdres.Value + "', il='" + ddlil.SelectedValue + "' , ilce='" + ddlilce.SelectedValue + "',telefon='" + tbtel.Text + "' where uye_id=(select id  from uyeler where email='" + Session["user"].ToString() + "' )", conn);
+                SqlCommand adres_sayisi = new SqlCommand("select count(*) from uyeadres where uye_id=(select id from uyeler where email ='"+ Session["user"].ToString() + "')", conn);
 
-                sqlkod.ExecuteNonQuery();
+                if (int.Parse(adres_sayisi.ExecuteScalar().ToString()) > 0)
+                {
+                    SqlCommand sqlupdate = new SqlCommand("update uyeadres set adres='" + taAdres.Value + "', il='" + ddlil.SelectedValue + "' , ilce='" + ddlilce.SelectedValue + "',telefon='" + tbtel.Text + "' where uye_id=(select id  from uyeler where email='" + Session["user"].ToString() + "' )", conn);
+
+                    sqlupdate.ExecuteNonQuery();
+
+                }
+                else
+                {
+                    SqlCommand sqlinsert = new SqlCommand("insert into uyeadres (uye_id,adres,il,ilce,telefon) values ((select id  from uyeler where email='" + Session["user"].ToString() + "'),'" + taAdres.Value + "','" + ddlil.SelectedValue + "','" + ddlilce.SelectedValue + "','" + tbtel.Text + "')", conn);
+
+                    sqlinsert.ExecuteNonQuery();
+
+                }
+
+
 
                 Response.Write("<script>alert('Adres Bilgileriniz GÜncellendi!')</script>");
 
