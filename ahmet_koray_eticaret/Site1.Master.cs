@@ -37,6 +37,10 @@ namespace ahmet_koray_eticaret
 
         }
 
+
+        
+
+
         [Obsolete]
         protected void btgiris_Click(object sender, EventArgs e)
         {
@@ -237,6 +241,26 @@ namespace ahmet_koray_eticaret
             Session.Remove("user");
             Response.Cookies["sepetsayi"].Expires = DateTime.Now.AddDays(-1);
             Response.Redirect("Anasayfa.aspx");     
+        }
+
+
+        protected void btnsifreunuttum_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Anasayfa.aspx?sifreunuttum=1");
+
+        }
+
+        protected void btarama_Click(object sender, EventArgs e)
+        {
+            SqlConnection conn = new SqlConnection();
+
+            conn.ConnectionString = "Data Source=DESKTOP-OR597H6; Initial Catalog=eticaret; Integrated Security=true";
+
+            conn.Open();
+
+            SqlCommand arama = new SqlCommand("select id from urunmarka  where urun_adi like '%'"+tbarama.Text+"'%'", conn);
+
+            //for ile saydırıp yönlerime yapıp yansıtma olacak
         }
     }
 }

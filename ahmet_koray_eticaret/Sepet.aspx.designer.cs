@@ -94,6 +94,15 @@ namespace ahmet_koray_eticaret {
         protected global::System.Web.UI.WebControls.Label lbltoplamfiyat;
         
         /// <summary>
+        /// btndevamet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btndevamet;
+        
+        /// <summary>
         /// btnadres control.
         /// </summary>
         /// <remarks>
@@ -101,6 +110,15 @@ namespace ahmet_koray_eticaret {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnadres;
+        
+        /// <summary>
+        /// btngeriyedon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btngeriyedon;
         
         /// <summary>
         /// btnsiparis control.
@@ -157,6 +175,15 @@ namespace ahmet_koray_eticaret {
         protected global::System.Web.UI.WebControls.SqlDataSource sdsadresilce;
         
         /// <summary>
+        /// tbtel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbtel2;
+        
+        /// <summary>
         /// btnadresonay control.
         /// </summary>
         /// <remarks>
@@ -164,5 +191,23 @@ namespace ahmet_koray_eticaret {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnadresonay;
+        
+        /// <summary>
+        /// rdladresler control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rdladresler;
+        
+        /// <summary>
+        /// btnsiparisonay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnsiparisonay;
     }
 }

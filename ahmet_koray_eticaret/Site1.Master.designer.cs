@@ -31,6 +31,24 @@ namespace ahmet_koray_eticaret {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// tbarama control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbarama;
+        
+        /// <summary>
+        /// btarama control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btarama;
+        
+        /// <summary>
         /// btnuyeprofil control.
         /// </summary>
         /// <remarks>
@@ -74,6 +92,15 @@ namespace ahmet_koray_eticaret {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox checker;
+        
+        /// <summary>
+        /// btnsifreunuttum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnsifreunuttum;
         
         /// <summary>
         /// btgiris control.

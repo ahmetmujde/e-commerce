@@ -3,18 +3,27 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <%  
-        string onaydurum = Request.QueryString["onaydurum"];
-        string guvenlik_kodu = Request.QueryString["guvenlik_kodu"];
-    %>
+<%  
+    string onaydurum = Request.QueryString["onaydurum"];
+    string guvenlik_kodu = Request.QueryString["guvenlik_kodu"];
 
-    <%if (onaydurum=="true")
-        {
-            ClientScript.RegisterStartupScript(Page.GetType(), "alert", "alert('Üyeliginiz oluşturuldu!  Şifrenizi unutma durumunda oluşturulan GÜVENLİK KODUNUZ : "+guvenlik_kodu+"');window.location='Anasayfa.aspx';", true);
-            
-        }
-    %>
- <div class="container">
+    int sifreunuttum = 0;
+    if(Request.QueryString["sifreunuttum"]!=null)
+        sifreunuttum = int.Parse(Request.QueryString["sifreunuttum"]);
+
+%>
+
+<%if (onaydurum=="true")
+    {
+        ClientScript.RegisterStartupScript(Page.GetType(), "alert", "alert('Üyeliginiz oluşturuldu!  Şifrenizi unutma durumunda oluşturulan GÜVENLİK KODUNUZ : "+guvenlik_kodu+"');window.location='Anasayfa.aspx';", true);
+
+    }
+
+if (sifreunuttum == 0)
+{
+%>
+ 
+<div class="container">
     <!--Slider-->
     <div id="slider" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
@@ -216,8 +225,97 @@
         <li class="l1"> <asp:HyperLink ID="linksonagit"  runat="server"></asp:HyperLink></li>
     </ul>
 </div>
+    <%}
 
-<script src="src/js/jquery-3.4.1.min.js"></script>    
+else if (sifreunuttum == 1)
+{%>
+    <br /> <br />
+
+    <div class="d-flex justify-content-center">
+        <div class="card">
+            <div class="card-header">
+               <i class="fas fa-question-circle"></i>ŞİFRE UNUTTUM 
+            </div>
+            <div class="card-body">
+            <blockquote class="blockquote mb-0">
+
+                <div class="d-flex flex-column bd-highlight mb-3">
+                    <span>
+                    <label>E-MAİL</label>
+
+                    <asp:TextBox ID="tbemail"  class="form-control" runat="server"  placeholder=" E-Posta adresinizi giriniz.." ></asp:TextBox>
+                
+                    </span>
+                    
+                    <br />
+
+                    <span>
+                        <label>GÜVENLİK SİFRESİ</label>
+
+                        <asp:TextBox  ID="tbguvenliksifresi"  class="form-control" runat="server"  placeholder=" Guvenlik sifresi..."  TextMode="Password" ></asp:TextBox>
+                
+                    </span>
+
+                </div>
+
+                 <asp:Button ID="btnsifreunuttum" runat="server" class="btn btn-primary btn-block " Text="Sifre Unuttum" OnClick="btnsifreunuttum_Click" />
+
+                <footer class="blockquote-footer">Lütfen üye olurken size verilen <cite title="Source Title">Güvenlik Sifresini Giriniz...</cite></footer>
+            </blockquote>
+            </div>
+        </div>
+    </div>
+
+    <br /> <br />
+
+<%}
+
+else if (sifreunuttum == 2)
+{%>
+        <br /> <br />
+
+    <div class="d-flex justify-content-center">
+        <div class="card">
+            <div class="card-header">
+               <i class="fas fa-question-circle"></i>ŞİFRE UNUTTUM 
+            </div>
+            <div class="card-body">
+            <blockquote class="blockquote mb-0">
+
+                <div class="d-flex flex-column bd-highlight mb-3">
+                    <span>
+                      <label for="password">Şifre</label>
+
+                      <asp:TextBox ID="tbsifre" runat="server" TextMode="Password" class="form-control" placeholder="şifrenizi giriniz.."></asp:TextBox>
+                        
+                    </span>
+                    
+                    <br />
+
+                    <span>
+                      <label for="password">Şifre Tekrar</label>
+
+                      <asp:TextBox ID="tbsifre2" runat="server" TextMode="Password" class="form-control" placeholder="şifrenizi tekrar giriniz.."></asp:TextBox>
+                        
+                    </span>
+
+                </div>
+
+                 <asp:Button ID="btnsifreguncelle" runat="server" class="btn btn-success btn-block " Text="Sifre Güncelle" OnClick="btnsifreguncelle_Click" />
+
+                <footer class="blockquote-footer">Lütfen sifrenizi belirlerken <cite title="Source Title">güçlü ve hatırlayacagınız nitelikte  olmasına dikkat ediniz</cite></footer>
+            </blockquote>
+            </div>
+        </div>
+    </div>
+
+    <br /> <br />
+<%} %>
+
+<script src="src/js/jquery-3.4.1.min.js"></script>
+<script src="src/js/popper.js"></script>
+<script src="src/js/bootstrap.min.js"></script>
+<script src="src/js/all.min.js"></script>
 
 <script type="text/javascript" >
     $(document).ready(function(){
@@ -233,7 +331,6 @@
                 addClass('active');
             $('.sayfala').find('.sayfano.active').sonraki().
                 removeClass('active');
-    })
-
+         })
 </script>
 </asp:Content>

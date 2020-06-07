@@ -79,7 +79,7 @@ namespace ahmet_koray_eticaret
 
             conn.Open();
 
-            SqlCommand siparis = new SqlCommand("select sd.durum_adi,urunler.urun_baslik,s.urun_adedi,i.il_adi,ilceler.ilce_adi,s.toplam_fiyat,k.kargo_adi,convert(varchar,s.satis_tarihi,106) as tarih from siparisler as s inner join siparisdurumu as sd on s.siparis_durumu=sd.id inner join urunler on urunler.id=s.siparis_urun inner join kargosirketleri k on k.id=s.kargo_firmasi inner join iller as i on i.id=s.gonderilen_il inner join ilceler on ilceler.id=s.gonderilen_ilce where satin_alan_uye=(select id from uyeler where email='" + Session["user"].ToString() + "')", conn);
+            SqlCommand siparis = new SqlCommand("select sd.durum_adi,urunler.urun_baslik,s.urun_adedi,i.il_adi,ilceler.ilce_adi,uyeadres.adres,s.toplam_fiyat,k.kargo_adi,convert(varchar,s.satis_tarihi,106) as tarih from siparisler as s inner join siparisdurumu as sd on s.siparis_durumu=sd.id inner join urunler on urunler.id=s.siparis_urun inner join kargosirketleri k on k.id=s.kargo_firmasi inner join iller as i on i.id=s.gonderilen_il inner join ilceler on ilceler.id=s.gonderilen_ilce inner join uyeadres on s.adres=uyeadres.id where satin_alan_uye=(select id from uyeler where email='" + Session["user"].ToString() + "')", conn);
 
             SqlDataAdapter sda = new SqlDataAdapter(siparis);
 
@@ -107,7 +107,7 @@ namespace ahmet_koray_eticaret
 
             conn.Open();
 
-            SqlCommand cmd = new SqlCommand("select upper(uye_adi) as ad ,upper(uye_soyadi) as soyad,adres,telefon,il_adi,ilce_adi from uyeadres inner join iller on uyeadres.il=iller.id inner join ilceler on uyeadres.il=ilceler.il_kodu inner join uyeler on uyeadres.uye_id=uyeler.id where uyeadres.ilce=ilceler.id and uye_id=(select id from uyeler where email='"+ Session["user"].ToString() + "') ", conn);
+            SqlCommand cmd = new SqlCommand("select  ROW_NUMBER ( ) OVER(ORDER BY adres) as satir,adres,telefon,il_adi,ilce_adi from uyeadres inner join iller on uyeadres.il=iller.id inner join ilceler on uyeadres.il=ilceler.il_kodu inner join uyeler on uyeadres.uye_id=uyeler.id where uyeadres.ilce=ilceler.id and uye_id=(select id from uyeler where email='" + Session["user"].ToString() + "') ", conn);
 
 
 
@@ -117,6 +117,22 @@ namespace ahmet_koray_eticaret
             sda.Fill(dt);
             rptuyeprofil.DataSource = dt;
             rptuyeprofil.DataBind();
+
+
+            SqlCommand adresler = new SqlCommand("select upper(adres) as adres,id from uyeadres where uye_id = (select id from uyeler where email = '" + Session["user"].ToString() + "' )", conn);
+
+            SqlDataReader adresoku = adresler.ExecuteReader();
+
+
+
+            while (adresoku.Read())
+            {
+
+                rbladres.Items.Add(new ListItem(adresoku[0].ToString(), adresoku[1].ToString()));
+            }
+
+            conn.Dispose();
+            conn.Close();
 
 
         }
@@ -207,45 +223,66 @@ namespace ahmet_koray_eticaret
 
             conn.Open();
 
-            
-            if (taAdres.Value != null && tbtel.Text != null)
+            SqlCommand adres_sayisi = new SqlCommand("select count(*) from uyeadres where uye_id=(select id from uyeler where email ='"+ Session["user"].ToString() + "')", conn);
+
+            if (int.Parse(adres_sayisi.ExecuteScalar().ToString()) > 0)
             {
 
-                SqlCommand adres_sayisi = new SqlCommand("select count(*) from uyeadres where uye_id=(select id from uyeler where email ='"+ Session["user"].ToString() + "')", conn);
-
-                if (int.Parse(adres_sayisi.ExecuteScalar().ToString()) > 0)
+                if(rbladres.SelectedItem == null)
                 {
-                    SqlCommand sqlupdate = new SqlCommand("update uyeadres set adres='" + taAdres.Value + "', il='" + ddlil.SelectedValue + "' , ilce='" + ddlilce.SelectedValue + "',telefon='" + tbtel.Text + "' where uye_id=(select id  from uyeler where email='" + Session["user"].ToString() + "' )", conn);
-
-                    sqlupdate.ExecuteNonQuery();
-
+                    Response.Write("<script> alert('Lütfen Seçeceginiz Adresi Seçiniz!')</script>");
                 }
+
                 else
+                {
+
+                    if ((taAdres.Value != "") && (tbtel.Text != ""))
+                    {
+
+                        SqlCommand sqlupdate = new SqlCommand("update uyeadres set adres='" + taAdres.Value + "', il='" + ddlil.SelectedValue + "' , ilce='" + ddlilce.SelectedValue + "',telefon='" + tbtel.Text + "',guncellenme_tarihi='" + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") + "'   where id='" + rbladres.SelectedItem.Value + "' and uye_id=(select id  from uyeler where email='" + Session["user"].ToString() + "' )", conn);
+
+                        sqlupdate.ExecuteNonQuery();
+
+
+                        Response.Write("<script>alert('Adres Bilgileriniz GÜncellendi!')</script>");
+
+                        Response.Redirect("Uyeprofil.aspx?panelno=0");
+
+
+                    }
+
+                    else
+                    {
+                        Response.Write("<script> alert('Lütfen Boş Alan Bırakmayınız!')</script>");
+                    }
+                }
+
+
+            }
+
+
+            else
+            {
+                if ((taAdres.Value != "") && (tbtel.Text != ""))
                 {
                     SqlCommand sqlinsert = new SqlCommand("insert into uyeadres (uye_id,adres,il,ilce,telefon) values ((select id  from uyeler where email='" + Session["user"].ToString() + "'),'" + taAdres.Value + "','" + ddlil.SelectedValue + "','" + ddlilce.SelectedValue + "','" + tbtel.Text + "')", conn);
 
                     sqlinsert.ExecuteNonQuery();
 
+
+                    Response.Write("<script>alert('Adres Bilgileriniz GÜncellendi!')</script>");
+
+                    Response.Redirect("Uyeprofil.aspx?panelno=0");
+
                 }
 
 
-
-                Response.Write("<script>alert('Adres Bilgileriniz GÜncellendi!')</script>");
-
-                Response.Redirect("Uyeprofil.aspx?panelno=0");
+                else
+                {
+                    Response.Write("<script> alert('Lütfen Boş Alan Bırakmayınız!')</script>");
+                }
 
             }
-            else
-            {
-                if (taAdres.Value == null)
-                    Response.Write("<script> alert(' Adres boş geçilemez!')</script>");
-
-                if (tbtel.Text == null)
-                    Response.Write("<script> alert(' Telefon boş geçilemez!')</script>");
-
-                return;
-            }
-            
 
             conn.Dispose();
             conn.Close();

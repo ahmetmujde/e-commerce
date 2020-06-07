@@ -9,6 +9,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.IO;
+using System.Security;
+using System.Web.Security;
 
 namespace ahmet_koray_eticaret
 {
@@ -29,6 +31,96 @@ namespace ahmet_koray_eticaret
 
             }
         }
+
+        static string email = "";
+
+        protected void btnsifreunuttum_Click(object sender, EventArgs e)
+        {
+            SqlConnection conn = new SqlConnection();
+
+            conn.ConnectionString = "Data Source=DESKTOP-OR597H6; Initial Catalog=eticaret; Integrated Security=true";
+
+            conn.Open();
+
+            email = tbemail.Text;
+
+            if ((email != "") && (tbguvenliksifresi.Text != "")) { 
+
+                SqlCommand sifreunuttum = new SqlCommand("select count(*) from uyeler where email='" + email + "' and  guvenlik_kodu='" + tbguvenliksifresi.Text + "'", conn);
+
+                if (int.Parse(sifreunuttum.ExecuteScalar().ToString())==1)
+                {
+                    Response.Redirect("Anasayfa.aspx?sifreunuttum=2");
+                }
+                else
+                {
+                    Response.Write("<script> alert('Girmiş Olduğunuz Değerler İle Herhangi Bir Veriye Ulaşılamadı!') </script>");
+                }
+            }
+
+            else
+            {
+                Response.Write("<script> alert('Lütfen Herhangi Boş Alan Bırakmayınız!') </script>");
+            }
+
+            conn.Dispose();
+
+            conn.Close();
+
+
+        }
+
+        [Obsolete]
+        protected void btnsifreguncelle_Click(object sender, EventArgs e)
+        {
+            SqlConnection conn = new SqlConnection();
+
+            conn.ConnectionString = "Data Source=DESKTOP-OR597H6; Initial Catalog=eticaret; Integrated Security=true";
+
+            conn.Open();
+
+            
+
+            if ((tbsifre.Text != "") && (tbsifre2.Text != ""))
+            {
+                if ((tbsifre.Text.Length > 7) && (tbsifre2.Text.Length > 7))
+                { 
+                    if (tbsifre.Text == tbsifre2.Text)
+                    {
+
+                        string md5_sifre = FormsAuthentication.HashPasswordForStoringInConfigFile(tbsifre.Text, "MD5");
+
+                        SqlCommand sifreguncelle = new SqlCommand("update uyeler set sifre='"+md5_sifre+"' where email='"+ email + "'", conn);
+
+                        sifreguncelle.ExecuteNonQuery();
+
+                        ClientScript.RegisterStartupScript(Page.GetType(), "alert", "alert('Şifreniz Başarıyla Değiştirildi');window.location='Anasayfa.aspx';", true);
+                    }
+
+                    else
+                    {
+                        Response.Write("<script> alert('Girilen Şifreler Birbirleri İle Eşleşmemektedir Lütfen Kontrol Ediniz') </script>");
+                    }
+
+                }
+
+                else
+                {
+                    Response.Write("<script> alert('Şifreniz En az 8 basamak uzunlugunda olmalıdır') </script>");
+                }
+            }
+
+            else
+            {
+                Response.Write("<script> alert('Lütfen Herhangi Boş Alan Bırakmayınız!') </script>");
+            }
+
+            conn.Dispose();
+
+            conn.Close();
+
+        }
+
 
         private void urunlerilistele()
         {
