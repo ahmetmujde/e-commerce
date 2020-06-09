@@ -26,24 +26,6 @@ namespace ahmet_koray_eticaret
                 if (urun == null)
                     Response.Redirect("Anasayfa.aspx");
 
-               
-                /*
-                if (markaindex != null)
-                {
-
-                    
-                    string[] markaindexleri = markaindex.Split(',');
-
-                    foreach (string i in markaindexleri)
-                    {
-                        chblmarkalar.Items[int.Parse(i)].Selected = true;
-
-                    }
-                   
-                 
-                }
-                 */
-
             }
         }
 
@@ -76,7 +58,7 @@ namespace ahmet_koray_eticaret
 
             if((markasec==null) && (minfiyat==null) && (maxfiyat==null))
             { 
-                sqlkod = "select urunler.id as id ,urun_adi as urunadi,urun_baslik,urun_fiyat,urun_resim from  urunler inner join urunmarka on urunler.urun_marka=urunmarka.id where urunler.urun_turu='"+ urun +"'";
+                sqlkod = "select urunler.id as id ,urun_adi as urunadi,urun_baslik,urun_fiyat,urun_resim from  urunler inner join urunmarka on urunler.urun_marka=urunmarka.id where urun_durum=2 and urun_stok>0 and urunler.urun_turu='" + urun +"'";
 
                 SqlCommand cmd = new SqlCommand(sqlkod, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
@@ -138,7 +120,7 @@ namespace ahmet_koray_eticaret
             }
             else if(markasec!=null)
             {
-                sqlkod = "select urunler.id as id ,urun_adi as urunadi,urun_baslik,urun_fiyat,urun_resim from  urunler inner join urunmarka on urunler.urun_marka=urunmarka.id where urunler.urun_turu='" + urun + "' and  urunler.urun_marka IN ("+ markasec + ") and urun_fiyat between " + minfiyat + " and " + maxfiyat + "";
+                sqlkod = "select urunler.id as id ,urun_adi as urunadi,urun_baslik,urun_fiyat,urun_resim from  urunler inner join urunmarka on urunler.urun_marka=urunmarka.id where urun_durum=2 and urun_stok>0 and urunler.urun_turu='" + urun + "' and  urunler.urun_marka IN ("+ markasec + ") and urun_fiyat between " + minfiyat + " and " + maxfiyat + "";
 
                 SqlCommand cmd = new SqlCommand(sqlkod, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
@@ -203,7 +185,7 @@ namespace ahmet_koray_eticaret
 
             else
             {
-                sqlkod = "SELECT urunler.id as id,urunmarka.urun_adi as urunadi ,urun_baslik,urun_fiyat,urun_resim FROM urunler inner join urunturu ON urunler.urun_turu = urunturu.id inner join urunmarka ON urunler.urun_marka = urunmarka.id WHERE urunler.urun_turu='" + urun + "' and urun_fiyat between " + minfiyat + " and " + maxfiyat + "";
+                sqlkod = "SELECT urunler.id as id,urunmarka.urun_adi as urunadi ,urun_baslik,urun_fiyat,urun_resim FROM urunler inner join urunturu ON urunler.urun_turu = urunturu.id inner join urunmarka ON urunler.urun_marka = urunmarka.id WHERE urun_durum=2 and urun_stok>0 and urunler.urun_turu='" + urun + "' and urun_fiyat between " + minfiyat + " and " + maxfiyat + "";
 
                 SqlCommand cmd = new SqlCommand(sqlkod, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);

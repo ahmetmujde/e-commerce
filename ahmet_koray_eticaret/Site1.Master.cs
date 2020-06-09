@@ -258,9 +258,23 @@ namespace ahmet_koray_eticaret
 
             conn.Open();
 
-            SqlCommand arama = new SqlCommand("select id from urunmarka  where urun_adi like '%'"+tbarama.Text+"'%'", conn);
+            SqlCommand arama = new SqlCommand("select id from urunmarka  where urun_adi like '%"+ tbarama.Text + "%'", conn);
 
-            //for ile saydırıp yönlerime yapıp yansıtma olacak
+            SqlDataReader sdrara = arama.ExecuteReader();
+
+            string markasec = "";
+
+            while (sdrara.Read())
+            {
+      
+                markasec += sdrara["id"] + ",";
+            }
+
+            markasec = markasec.Substring(0, markasec.Length - 1);
+
+            Response.Redirect("Anasayfa.aspx?markasec=" + markasec + "&minfiyat=0&maxfiyat=1000&urunsirala=0&ddlindex=0&urunturuindex=0");
+
+            //for ile saydırıp yönlerime yapıp yansıtma olacak 
         }
     }
 }

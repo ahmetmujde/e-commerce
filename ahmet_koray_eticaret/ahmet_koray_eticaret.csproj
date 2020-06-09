@@ -67,7 +67,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="index.html" />
+    <Content Include="admin\Adminlogin.aspx" />
+    <Content Include="admin\bootstrap\css\bootstrap-responsive.min.css" />
+    <Content Include="admin\bootstrap\css\bootstrap.min.css" />
+    <Content Include="admin\bootstrap\img\glyphicons-halflings-white.png" />
+    <Content Include="admin\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="admin\bootstrap\js\bootstrap.min.js" />
+    <Content Include="admin\css\theme.css" />
+    <Content Include="admin\images\bg.png" />
+    <Content Include="admin\images\icons\css\font-awesome.css" />
+    <Content Include="admin\images\img.jpg" />
+    <Content Include="admin\images\jquery-ui\picker.png" />
+    <Content Include="admin\images\user.png" />
+    <Content Include="admin\Panel.aspx" />
+    <Content Include="admin\scripts\common.js" />
+    <Content Include="admin\scripts\datatables\jquery.dataTables.js" />
+    <Content Include="admin\scripts\flot\jquery.flot.js" />
+    <Content Include="admin\scripts\flot\jquery.flot.pie.js" />
+    <Content Include="admin\scripts\flot\jquery.flot.resize.js" />
+    <Content Include="admin\scripts\jquery-1.9.1.min.js" />
+    <Content Include="admin\scripts\jquery-ui-1.10.1.custom.min.js" />
+    <Content Include="admin\siparisislemleri.aspx" />
+    <Content Include="admin\urunguncelle.aspx" />
+    <Content Include="admin\urunislemleri.aspx" />
+    <Content Include="admin\urunler.aspx" />
+    <Content Include="admin\uyeislemler.aspx" />
     <Content Include="Sepet.aspx" />
     <Content Include="src\components.txt" />
     <Content Include="src\css\bootstrap.min.css" />
@@ -106,6 +130,55 @@
     <Content Include="Anasayfa.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin\Adminlogin.aspx.cs">
+      <DependentUpon>Adminlogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Adminlogin.aspx.designer.cs">
+      <DependentUpon>Adminlogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Panel.aspx.cs">
+      <DependentUpon>Panel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Panel.aspx.designer.cs">
+      <DependentUpon>Panel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\siparisislemleri.aspx.cs">
+      <DependentUpon>siparisislemleri.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\siparisislemleri.aspx.designer.cs">
+      <DependentUpon>siparisislemleri.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\urunguncelle.aspx.cs">
+      <DependentUpon>urunguncelle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\urunguncelle.aspx.designer.cs">
+      <DependentUpon>urunguncelle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\urunislemleri.aspx.cs">
+      <DependentUpon>urunislemleri.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\urunislemleri.aspx.designer.cs">
+      <DependentUpon>urunislemleri.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\urunler.aspx.cs">
+      <DependentUpon>urunler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\urunler.aspx.designer.cs">
+      <DependentUpon>urunler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\uyeislemler.aspx.cs">
+      <DependentUpon>uyeislemler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\uyeislemler.aspx.designer.cs">
+      <DependentUpon>uyeislemler.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sepet.aspx.cs">
       <DependentUpon>Sepet.aspx</DependentUpon>
@@ -151,6 +224,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\images\icons\font\fontawesome-webfont3294.eot" />
+    <Content Include="admin\images\icons\font\fontawesome-webfont3294.ttf" />
+    <Content Include="admin\images\icons\font\fontawesome-webfont3294.woff" />
+    <Content Include="admin\images\icons\font\fontawesome-webfontd41d.eot" />
     <None Include="packages.config" />
     <Content Include="Site1.Master" />
     <None Include="Web.Debug.config">

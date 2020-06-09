@@ -26,9 +26,6 @@ namespace ahmet_koray_eticaret
                 
                urunlerilistele();
 
-               urunturusayisi();
-
-
             }
         }
 
@@ -163,7 +160,7 @@ namespace ahmet_koray_eticaret
             if((markasec==null) && (urunturusec == null) && (minfiyat == null) && (maxfiyat == null))
             {
 
-                sqlkod = "select urunler.id as id,urun_adi as urunadi ,urun_baslik,urun_fiyat,urun_resim from urunler inner join urunmarka on urunler.urun_marka=urunmarka.id  WHERE urun_fiyat between 0 and 1000 ";
+                sqlkod = "select urunler.id as id,urun_adi as urunadi ,urun_baslik,urun_fiyat,urun_resim from urunler inner join urunmarka on urunler.urun_marka=urunmarka.id  WHERE urun_durum=2 and urun_stok>0 and urun_fiyat between 0 and 1000 ";
 
                 SqlCommand cmd = new SqlCommand(sqlkod, conn);
 
@@ -230,7 +227,7 @@ namespace ahmet_koray_eticaret
             else if ((markasec != null) && (urunturusec != null) && (minfiyat != null) && (maxfiyat != null))
             {
 
-                sqlkod = "SELECT urunler.id as id,urunmarka.urun_adi as urunadi,urun_baslik,urun_fiyat,urun_resim FROM urunler inner join urunturu ON urunler.urun_turu=urunturu.id inner join urunmarka ON urunler.urun_marka=urunmarka.id WHERE urunler.urun_turu IN (" + urunturusec + ") and  urunler.urun_marka IN (" + markasec + ") and urun_fiyat between " + minfiyat + " and " +maxfiyat + urunsirala + "";
+                sqlkod = "SELECT urunler.id as id,urunmarka.urun_adi as urunadi,urun_baslik,urun_fiyat,urun_resim FROM urunler inner join urunturu ON urunler.urun_turu=urunturu.id inner join urunmarka ON urunler.urun_marka=urunmarka.id WHERE urun_durum=2 and urun_stok>0 and urunler.urun_turu IN (" + urunturusec + ") and  urunler.urun_marka IN (" + markasec + ") and urun_fiyat between " + minfiyat + " and " +maxfiyat + urunsirala + "";
 
                 SqlCommand cmd = new SqlCommand(sqlkod, conn);
 
@@ -297,7 +294,7 @@ namespace ahmet_koray_eticaret
             else if ((markasec == null) && (urunturusec != null) && (minfiyat != null) && (maxfiyat != null))
             {
 
-                sqlkod = "SELECT urunler.id as id,urunmarka.urun_adi as urunadi ,urun_baslik,urun_fiyat,urun_resim FROM urunler inner join urunturu ON urunler.urun_turu=urunturu.id inner join urunmarka ON urunler.urun_marka=urunmarka.id WHERE urunler.urun_turu IN (" + urunturusec + ") and urun_fiyat between " + minfiyat + " and " +maxfiyat + urunsirala + "";
+                sqlkod = "SELECT urunler.id as id,urunmarka.urun_adi as urunadi ,urun_baslik,urun_fiyat,urun_resim FROM urunler inner join urunturu ON urunler.urun_turu=urunturu.id inner join urunmarka ON urunler.urun_marka=urunmarka.id WHERE urun_durum=2 and urun_stok>0 and urunler.urun_turu IN (" + urunturusec + ") and urun_fiyat between " + minfiyat + " and " +maxfiyat + urunsirala + "";
 
                 SqlCommand cmd = new SqlCommand(sqlkod, conn);
 
@@ -364,7 +361,7 @@ namespace ahmet_koray_eticaret
             else if ((markasec != null) && (urunturusec == null) && (minfiyat != null) && (maxfiyat != null))
             {
 
-                sqlkod = "SELECT urunler.id as id,urunmarka.urun_adi as urunadi ,urun_baslik,urun_fiyat,urun_resim FROM urunler inner join urunturu ON urunler.urun_turu=urunturu.id inner join urunmarka ON urunler.urun_marka=urunmarka.id WHERE urunler.urun_marka IN (" + markasec + ") and urun_fiyat between " + minfiyat + " and " +maxfiyat + urunsirala + "";
+                sqlkod = "SELECT urunler.id as id,urunmarka.urun_adi as urunadi ,urun_baslik,urun_fiyat,urun_resim FROM urunler inner join urunturu ON urunler.urun_turu=urunturu.id inner join urunmarka ON urunler.urun_marka=urunmarka.id WHERE urun_durum=2 and urun_stok>0 and urunler.urun_marka IN (" + markasec + ") and urun_fiyat between " + minfiyat + " and " +maxfiyat + urunsirala + "";
 
                 SqlCommand cmd = new SqlCommand(sqlkod, conn);
 
@@ -435,7 +432,7 @@ namespace ahmet_koray_eticaret
             else if ((markasec == null) && (urunturusec == null) && (minfiyat != null) && (maxfiyat != null))
             {
 
-                sqlkod = "SELECT urunler.id as id,urunmarka.urun_adi as urunadi,urun_baslik,urun_fiyat,urun_resim FROM urunler inner join urunturu ON urunler.urun_turu=urunturu.id inner join urunmarka ON urunler.urun_marka=urunmarka.id WHERE urun_fiyat between " + minfiyat + " and " + maxfiyat + urunsirala + "";
+                sqlkod = "SELECT urunler.id as id,urunmarka.urun_adi as urunadi,urun_baslik,urun_fiyat,urun_resim FROM urunler inner join urunturu ON urunler.urun_turu=urunturu.id inner join urunmarka ON urunler.urun_marka=urunmarka.id WHERE urun_durum=2 and urun_stok>0 and urun_fiyat between " + minfiyat + " and " + maxfiyat + urunsirala + "";
 
                 SqlCommand cmd = new SqlCommand(sqlkod, conn);
 
@@ -500,34 +497,11 @@ namespace ahmet_koray_eticaret
             
         }
 
-        private void urunturusayisi()
-        {
-            SqlConnection conn = new SqlConnection();
-
-            conn.ConnectionString = "Data Source=DESKTOP-OR597H6; Initial Catalog=eticaret; Integrated Security=true";
-
-            conn.Open();
-
-            SqlCommand komut = new SqlCommand("select urunturu.urun_adi, count(urun_turu) as toplam_urun from urunler inner join urunturu on urunler.urun_turu = urunturu.id group by urunler.urun_turu,urunturu.urun_adi", conn);
-
-           
-            SqlDataAdapter da = new SqlDataAdapter(komut); //Veri adaptörü
-
-            DataTable dt = new DataTable(); //Veri tablo
-
-            da.Fill(dt); //Veriyi doldurma
-
-            dtlurunrunturu.DataSource = dt;
-            dtlurunrunturu.DataBind();
-
-            conn.Close();
-        }
-
 
         protected void btnuygula_Click(object sender, EventArgs e)
         {
 
-            string urunturusec = "", markasec = "",urunsirala="",ddlindex="",urunturuindex="";
+            string urunturusec = "", markasec = "",urunsirala="",ddlindex="";
 
             if (numbermax.Text == "" || numbermin.Text == "")
             {
@@ -576,26 +550,26 @@ namespace ahmet_koray_eticaret
             //tur-marka-fiyat filitreleme
             if ((chblurunturu.SelectedIndex > -1) && (chblmarkalar.SelectedIndex > -1) && (numbermin.Text != null) && (numbermax.Text != null) )
             {
-                Response.Redirect("Anasayfa.aspx?urunturusec=" + urunturusec + "&markasec=" + markasec + "&minfiyat=" + numbermin.Text + "&maxfiyat=" + numbermax.Text + "&urunsirala="+urunsirala+ "&ddlindex=" + ddlindex + "&urunturuindex="+ urunturuindex + "");
+                Response.Redirect("Anasayfa.aspx?urunturusec=" + urunturusec + "&markasec=" + markasec + "&minfiyat=" + numbermin.Text + "&maxfiyat=" + numbermax.Text + "&urunsirala="+urunsirala+ "&ddlindex=" + ddlindex+ "");
             }
 
             //tur ve fiyat filitre
             else if ((chblurunturu.SelectedIndex > -1) && (numbermin.Text != null) && (numbermax.Text != null))
             {
-                Response.Redirect("Anasayfa.aspx?urunturusec=" + urunturusec + "&minfiyat=" + numbermin.Text + "&maxfiyat=" + numbermax.Text + "&urunsirala=" + urunsirala + "&ddlindex="+ ddlindex + "&urunturuindex=" + urunturuindex + "");
+                Response.Redirect("Anasayfa.aspx?urunturusec=" + urunturusec + "&minfiyat=" + numbermin.Text + "&maxfiyat=" + numbermax.Text + "&urunsirala=" + urunsirala + "&ddlindex="+ ddlindex +"");
             }
 
 
             //marka ve fiyat filitre
             else if ((numbermin.Text != null) && (numbermax.Text != null) && (chblmarkalar.SelectedIndex > -1))
             {
-                Response.Redirect("Anasayfa.aspx?markasec="+markasec+"&minfiyat=" + numbermin.Text + "&maxfiyat=" + numbermax.Text + "&urunsirala=" + urunsirala + "&ddlindex=" + ddlindex + "&urunturuindex=" + urunturuindex + "");
+                Response.Redirect("Anasayfa.aspx?markasec="+markasec+"&minfiyat=" + numbermin.Text + "&maxfiyat=" + numbermax.Text + "&urunsirala=" + urunsirala + "&ddlindex=" + ddlindex +"");
             }
 
             //sadece fiyat filitre
             else if ((numbermin.Text != null) && (numbermax.Text != null))
             {
-                Response.Redirect("Anasayfa.aspx?minfiyat=" + numbermin.Text + "&maxfiyat=" + numbermax.Text + "&urunsirala=" + urunsirala + "&ddlindex=" + ddlindex + "&urunturuindex=" + urunturuindex + "");
+                Response.Redirect("Anasayfa.aspx?minfiyat=" + numbermin.Text + "&maxfiyat=" + numbermax.Text + "&urunsirala=" + urunsirala + "&ddlindex=" + ddlindex + "");
             }
 
         }

@@ -83,22 +83,6 @@ if (sifreunuttum == 0)
                    
                      <asp:SqlDataSource ID="sdsurun" runat="server" ConnectionString="<%$ ConnectionStrings:eticaretConnectionString2 %>" SelectCommand="SELECT * FROM [urunturu]">
                     </asp:SqlDataSource>
-
-                    <asp:DataList ID="dtlurunrunturu" runat="server">
-
-                       
-                        <HeaderTemplate><div class="hizala" ></HeaderTemplate>
-                        
-                        <ItemTemplate>
-                            
-                            <span >
-                               <%# Eval( "toplam_urun") %>
-                                
-                            </span>
-                            </ItemTemplate>
-                        <FooterTemplate></div></FooterTemplate>
-                        
-                    </asp:DataList>       
                 </div>
             </div>
         </div>

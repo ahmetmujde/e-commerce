@@ -7,207 +7,153 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ahmet_koray_eticaret {
+namespace ahmet_koray_eticaret.admin {
     
     
-    public partial class WebForm1 {
+    public partial class urun_islemleri {
         
         /// <summary>
-        /// chblurunturu control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList chblurunturu;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// sdsurun control.
+        /// paneloturum control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource sdsurun;
+        protected global::System.Web.UI.WebControls.Panel paneloturum;
         
         /// <summary>
-        /// chblmarkalar control.
+        /// btncikis control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList chblmarkalar;
+        protected global::System.Web.UI.WebControls.Button btncikis;
         
         /// <summary>
-        /// sdsmarka control.
+        /// tburunbaslik control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource sdsmarka;
+        protected global::System.Web.UI.WebControls.TextBox tburunbaslik;
         
         /// <summary>
-        /// ddlurunlistele control.
+        /// ddlurunturu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlurunlistele;
+        protected global::System.Web.UI.WebControls.DropDownList ddlurunturu;
         
         /// <summary>
-        /// numbermin control.
+        /// sdsurunturu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox numbermin;
+        protected global::System.Web.UI.WebControls.SqlDataSource sdsurunturu;
         
         /// <summary>
-        /// revnumbermin control.
+        /// ddlurunmarka control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator revnumbermin;
+        protected global::System.Web.UI.WebControls.DropDownList ddlurunmarka;
         
         /// <summary>
-        /// numbermax control.
+        /// sqlurunmarka control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox numbermax;
+        protected global::System.Web.UI.WebControls.SqlDataSource sqlurunmarka;
         
         /// <summary>
-        /// revnumbermax control.
+        /// ddldurum control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator revnumbermax;
+        protected global::System.Web.UI.WebControls.DropDownList ddldurum;
         
         /// <summary>
-        /// btnuygula control.
+        /// sdsdurum control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnuygula;
+        protected global::System.Web.UI.WebControls.SqlDataSource sdsdurum;
         
         /// <summary>
-        /// rpturunler control.
+        /// tbfiyat control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rpturunler;
+        protected global::System.Web.UI.WebControls.TextBox tbfiyat;
         
         /// <summary>
-        /// linkbasadon control.
+        /// tbstok control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink linkbasadon;
+        protected global::System.Web.UI.WebControls.TextBox tbstok;
         
         /// <summary>
-        /// linkonceki control.
+        /// tbaciklama control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink linkonceki;
+        protected global::System.Web.UI.WebControls.TextBox tbaciklama;
         
         /// <summary>
-        /// linkgecerlisayfa control.
+        /// tbozellik control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink linkgecerlisayfa;
+        protected global::System.Web.UI.WebControls.TextBox tbozellik;
         
         /// <summary>
-        /// linksonraki control.
+        /// furesimsec control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink linksonraki;
+        protected global::System.Web.UI.WebControls.FileUpload furesimsec;
         
         /// <summary>
-        /// linksonagit control.
+        /// btnurunekle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink linksonagit;
-        
-        /// <summary>
-        /// tbemail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbemail;
-        
-        /// <summary>
-        /// tbguvenliksifresi control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbguvenliksifresi;
-        
-        /// <summary>
-        /// btnsifreunuttum control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnsifreunuttum;
-        
-        /// <summary>
-        /// tbsifre control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbsifre;
-        
-        /// <summary>
-        /// tbsifre2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbsifre2;
-        
-        /// <summary>
-        /// btnsifreguncelle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnsifreguncelle;
+        protected global::System.Web.UI.WebControls.Button btnurunekle;
     }
 }

@@ -91,9 +91,6 @@
           <li class="nav-item active">
             <a class="nav-link" href="Anasayfa.aspx">Anasayfa <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Tüm Ürünler</a>
-          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
@@ -104,10 +101,6 @@
               <a class="dropdown-item" href="Urunler.aspx?urun=2">Kapı Kolları</a>
               <a class="dropdown-item" href="Urunler.aspx?urun=3">Menteşeler</a>
             </div>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="#">Hakkımızda</a>
           </li>
 
           <li class="nav-item">
@@ -269,7 +262,6 @@
 </div>
 
 
-<script src="src/js/jquery-3.4.1.min.js"></script>
 <script src="src/js/popper.js"></script>
 <script src="src/js/bootstrap.min.js"></script>
 <script src="src/js/all.min.js"></script>
